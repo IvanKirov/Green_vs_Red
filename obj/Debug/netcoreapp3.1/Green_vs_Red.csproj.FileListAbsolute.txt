@@ -1,0 +1,13 @@
+D:\VS Projects\Green_vs_Red\bin\Debug\netcoreapp3.1\Green_vs_Red.exe
+D:\VS Projects\Green_vs_Red\bin\Debug\netcoreapp3.1\Green_vs_Red.deps.json
+D:\VS Projects\Green_vs_Red\bin\Debug\netcoreapp3.1\Green_vs_Red.runtimeconfig.json
+D:\VS Projects\Green_vs_Red\bin\Debug\netcoreapp3.1\Green_vs_Red.runtimeconfig.dev.json
+D:\VS Projects\Green_vs_Red\bin\Debug\netcoreapp3.1\Green_vs_Red.dll
+D:\VS Projects\Green_vs_Red\bin\Debug\netcoreapp3.1\Green_vs_Red.pdb
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.csprojAssemblyReference.cache
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.AssemblyInfoInputs.cache
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.AssemblyInfo.cs
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.csproj.CoreCompileInputs.cache
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.dll
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.pdb
+D:\VS Projects\Green_vs_Red\obj\Debug\netcoreapp3.1\Green_vs_Red.genruntimeconfig.cache

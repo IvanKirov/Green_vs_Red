@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Green_vs_Red/1.0.0": {
+        "runtime": {
+          "Green_vs_Red.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Green_vs_Red/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
