@@ -10,7 +10,7 @@ namespace Green_vs_Red
         {
             Console.Write("Input (x, y): ");
 
-            // Recieving the matrix dimentions
+            // Receiving the matrix dimensions
             var matrixSizeInput = Console.ReadLine()
                 .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
@@ -33,7 +33,7 @@ namespace Green_vs_Red
                 }
             }
 
-            // Recieving the coordinates of the observed cell and how many generations will there be
+            // Receiving the coordinates of the observed cell and how many generations will there be
             var additionalArguments = Console.ReadLine()
                 .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
@@ -61,7 +61,7 @@ namespace Green_vs_Red
                 greenCounter = TargetCellStatusCheck(cell, greenCounter);
             }
 
-            //Count of chenges of the cell
+            //Count of changes of the cell
             Console.WriteLine(greenCounter);
         }
 
@@ -80,7 +80,7 @@ namespace Green_vs_Red
                 
                 if (cell.Value == 1)
                 {
-                    //The green cell does not change if surrouded by 2,3 or 6 green cells
+                    //The green cell does not change if surrounded by 2,3 or 6 green cells
                     if (countOfGreenCells == 2 || countOfGreenCells == 3 || countOfGreenCells == 6)
                     {
                         
@@ -106,7 +106,7 @@ namespace Green_vs_Red
                 newMatrix.Add(newCell);
             }
 
-            //Replaising the old matrix with the new one
+            //Replacing the old matrix with the new one
             matrix.Clear();
             matrix.AddRange(newMatrix);
         }
