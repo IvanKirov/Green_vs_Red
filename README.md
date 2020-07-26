@@ -31,20 +31,35 @@ Print your result in the console.
 Special requirement: Write your game in a way that uses several classes. This will show OOP knowledge and will account for more points during the evaluation. Comments, good naming convention and documenlation are also recommended.
 
 # Example 1:
-#3x3 grid, in the initial state, the second row is all 1s, how many times will the cell [1, O] (top center) become green in 1O turns?
+
+3x3 grid, in the initial state, the second row is all 1s, how many times will the cell [1, O] (top center) become green in 1O turns?
+
 3, 3 
+
 000 
+
 111 
+
 000 
+
 1, 0, 10
+
 #expected result: 5
 
+
 # Exarnple2:
-#4x4 grid. Input:
+4x4 grid. Input:
+
 4,4 
+
 1001 
+
 1111 
+
 0100 
-1010 
+
+1010
+
 2, 2, 15 
+
 #expected result: 14 
