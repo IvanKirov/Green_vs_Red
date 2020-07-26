@@ -48,4 +48,5 @@ Special requirement: Write your game in a way that uses several classes. This wi
 0100 
 1010 
 2, 2, 15 
+
 #expected result: 14 
