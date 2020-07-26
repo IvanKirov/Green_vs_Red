@@ -49,11 +49,17 @@ Special requirement: Write your game in a way that uses several classes. This wi
 
 # Exarnple2:
 4x4 grid. Input:
+
 4,4 
+
 1001 
+
 1111 
+
 0100 
-1010 
+
+1010
+
 2, 2, 15 
 
 #expected result: 14 
