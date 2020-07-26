@@ -8,8 +8,48 @@ namespace Green_vs_Red
     {
         public static void Main()
         {
-            Console.Write("Input (x, y): ");
+            var matrix = CreateAndFillZeroMatrix();            
 
+            // Receiving the coordinates of the observed cell and how many generations will there be
+            var additionalArguments = Console.ReadLine()
+                .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
+
+            // The coordinates of the cell to be checked
+            var cellColumn = additionalArguments[0];
+            var cellRow = additionalArguments[1];            
+           
+            Cell cell = matrix.Find(c => c.Row == cellRow && c.Col == cellColumn);
+            TargetCell targetCell = new TargetCell
+            {
+                Row = cell.Row,
+                Col = cell.Col,
+                Value = cell.Value
+            };
+
+            // Check if cell is red or green in Generation Zero matrix
+            TargetCellStatusCheck(targetCell);
+
+            // The count of the new generations
+            var lastGeneration = additionalArguments[2];
+
+            for (int generation = 0; generation < lastGeneration; generation++)
+            {
+                //The new matrix generation
+                GenerateNewMatrix(matrix);
+                
+                // Check if cell is red or green in the new matrix
+                targetCell.Value = matrix.Find(c => c.Row == targetCell.Row && c.Col == targetCell.Col).Value;
+                TargetCellStatusCheck(targetCell);
+            }
+
+            //Count of changes of the target cell
+            Console.WriteLine(targetCell.Counter);
+        }
+
+        public static List<Cell> CreateAndFillZeroMatrix()
+        {
             // Receiving the matrix dimensions
             var matrixSizeInput = Console.ReadLine()
                 .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
@@ -33,49 +73,14 @@ namespace Green_vs_Red
                 }
             }
 
-            // Receiving the coordinates of the observed cell and how many generations will there be
-            var additionalArguments = Console.ReadLine()
-                .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
-
-            // The coordinates of the cell to be checked
-            var cellColumn = additionalArguments[0];
-            var cellRow = additionalArguments[1];            
-           
-            Cell cell = matrix.Find(c => c.Row == cellRow && c.Col == cellColumn);
-            TargetCell targetCell = new TargetCell
-            {
-                Row = cell.Row,
-                Col = cell.Col,
-                Value = cell.Value
-            };
-            // Check if cell is red or green in Generation Zero matrix
-            TargetCellStatusCheck(targetCell);
-
-            // The count of the new generations
-            var lastGeneration = additionalArguments[2];
-
-            for (int generation = 0; generation < lastGeneration; generation++)
-            {
-                //The new matrix generation
-                GenerateNewMatrix(matrix);
-                
-                // Check if cell is red or green in the new matrix
-                targetCell.Value = matrix.Find(c => c.Row == targetCell.Row && c.Col == targetCell.Col).Value;
-                TargetCellStatusCheck(targetCell);
-            }
-
-            //Count of changes of the cell
-            Console.WriteLine(targetCell.Counter);
+            return matrix;
         }
 
-        private static void GenerateNewMatrix(List<Cell> matrix)
+        public static void GenerateNewMatrix(List<Cell> matrix)
         {
             //Temporary new matrix to hold the changes
             var newMatrix = new List<Cell>();
-
-            //for (int i = 0; i < matrix.Count; i++)
+            
             foreach (Cell cell in matrix)
             {
                 //Checking the conditions for each cell
@@ -95,7 +100,6 @@ namespace Green_vs_Red
                     {
                         newCell.Value = 0;
                     }
-
                 }
                 
                 if (cell.Value == 0)
@@ -116,47 +120,47 @@ namespace Green_vs_Red
             matrix.AddRange(newMatrix);
         }
 
-        private static int checkForSurroundingGreenCells(int row, int col, List<Cell> oldMatrix)
+        public static int checkForSurroundingGreenCells(int row, int col, List<Cell> matrix)
         {
             var countOfSurroundingGreenCells = 0;
 
             // Check if there is cell row-1, col-1 and green.
-            if (oldMatrix.Any(c => c.Row == row - 1 && c.Col == col - 1 && c.Value == 1))
+            if (matrix.Any(c => c.Row == row - 1 && c.Col == col - 1 && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row-1, col and green.
-            if (oldMatrix.Any(c => c.Row == row - 1 && c.Col == col && c.Value == 1))
+            if (matrix.Any(c => c.Row == row - 1 && c.Col == col && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row-1, col+1 and green.
-            if (oldMatrix.Any(c => c.Row == row - 1 && c.Col == col + 1 && c.Value == 1))
+            if (matrix.Any(c => c.Row == row - 1 && c.Col == col + 1 && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row, col-1 and green.
-            if (oldMatrix.Any(c => c.Row == row && c.Col == col - 1 && c.Value == 1))
+            if (matrix.Any(c => c.Row == row && c.Col == col - 1 && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row, col+1 and green.
-            if (oldMatrix.Any(c => c.Row == row && c.Col == col + 1 && c.Value == 1))
+            if (matrix.Any(c => c.Row == row && c.Col == col + 1 && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row+1, col-1 and green.
-            if (oldMatrix.Any(c => c.Row == row + 1 && c.Col == col - 1 && c.Value == 1))
+            if (matrix.Any(c => c.Row == row + 1 && c.Col == col - 1 && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row+1, col and green.
-            if (oldMatrix.Any(c => c.Row == row + 1 && c.Col == col && c.Value == 1))
+            if (matrix.Any(c => c.Row == row + 1 && c.Col == col && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
             // Check if there is cell row+1, col+1 and green.
-            if (oldMatrix.Any(c => c.Row == row + 1 && c.Col == col + 1 && c.Value == 1))
+            if (matrix.Any(c => c.Row == row + 1 && c.Col == col + 1 && c.Value == 1))
             {
                 countOfSurroundingGreenCells++;
             }
@@ -164,7 +168,7 @@ namespace Green_vs_Red
             return countOfSurroundingGreenCells;
         }
 
-        private static void TargetCellStatusCheck(TargetCell cell)
+        public static void TargetCellStatusCheck(TargetCell cell)
         {
             if (cell.Value == 1)
             {
