@@ -41,12 +41,17 @@ namespace Green_vs_Red
 
             // The coordinates of the cell to be checked
             var cellColumn = additionalArguments[0];
-            var cellRow = additionalArguments[1];
-            
-            int greenCounter = 0;
+            var cellRow = additionalArguments[1];            
+           
             Cell cell = matrix.Find(c => c.Row == cellRow && c.Col == cellColumn);
+            TargetCell targetCell = new TargetCell
+            {
+                Row = cell.Row,
+                Col = cell.Col,
+                Value = cell.Value
+            };
             // Check if cell is red or green in Generation Zero matrix
-            greenCounter = TargetCellStatusCheck(cell, greenCounter);
+            TargetCellStatusCheck(targetCell);
 
             // The count of the new generations
             var lastGeneration = additionalArguments[2];
@@ -57,12 +62,12 @@ namespace Green_vs_Red
                 GenerateNewMatrix(matrix);
                 
                 // Check if cell is red or green in the new matrix
-                cell = matrix.Find(c => c.Row == cellRow && c.Col == cellColumn);
-                greenCounter = TargetCellStatusCheck(cell, greenCounter);
+                targetCell.Value = matrix.Find(c => c.Row == targetCell.Row && c.Col == targetCell.Col).Value;
+                TargetCellStatusCheck(targetCell);
             }
 
             //Count of changes of the cell
-            Console.WriteLine(greenCounter);
+            Console.WriteLine(targetCell.Counter);
         }
 
         private static void GenerateNewMatrix(List<Cell> matrix)
@@ -159,14 +164,12 @@ namespace Green_vs_Red
             return countOfSurroundingGreenCells;
         }
 
-        private static int TargetCellStatusCheck(Cell cell, int greenCounter)
+        private static void TargetCellStatusCheck(TargetCell cell)
         {
             if (cell.Value == 1)
             {
-                greenCounter++;
+                cell.Counter++;
             }
-
-            return greenCounter;
         }
     }
 }
